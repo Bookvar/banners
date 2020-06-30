@@ -1,0 +1,23 @@
+<p>
+    <a id='idite_na' href="https://tele.gs/baltnews">
+    <img src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/baltnews/ban_tel.jpg" width="100%">
+    </a>
+    </p>
+    
+    <p><em><strong>Подписывайтесь на Baltnews в <span style="color: #3366ff;"><a style="color: #3366ff;" href="https://zen.yandex.ru/baltnews.ee">Яндекс.Дзен</a> </span>и присоединяйтесь к нам в <span style="color: #3366ff;"><a style="color: #3366ff;" href="https://www.facebook.com/russkayapribaltika/" target="_blank" rel="noopener">Facebook</a></span></strong></em></p>
+    
+    <script>
+    function init() {
+      $.get("https://ipinfo.io", function(response) {
+        if(response.country == "RU") {
+          document.getElementById('idite_na').href = "https://tele.gs/baltnews";
+          console.log("Кто вы?  Идите на ... Я вас не знаю.");
+        }
+        else {
+          document.getElementById('idite_na').href = "https://t.me/baltnews";
+          console.log("Who you are? Go on ... I don't know you.");
+        }
+      }, "jsonp")
+    };
+    init();
+    </script>
