@@ -1,0 +1,108 @@
+<!-- 9 мая 2020 1000px
+тут только в днях -->
+<br>
+<div id="parent-id-1000" width="1000px" height="90px" > 
+  <div class="sp-banner-1000" style="position:relative">
+    <img src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/timer/OS/1000x90_ru.png">
+  </div>
+  <ul class="timer">
+     <li>
+       <span class="days">00</span><span class="seperator"> </span><span class="days_ref">дней</span>
+     </li>
+  </ul>
+</div>
+<br>
+<!-- Здесь ставим необходимую дату  -->
+<script>
+(function(){
+  var cont = document.getElementById("parent-id-1000");
+  if (!cont) return;
+  cont.style.position = "relative";
+  var timer = cont.querySelector(".timer");
+  timer.parentNode.style.position = "relative";
+  timer.style.position = "absolute";
+  timer.style['list-style'] = "none";
+  timer.style.margin = "0 0 0 0";
+  timer.style.padding = "0";
+  timer.style.display = "block";
+<!--  
+-->
+  timer.style.top = "50%";
+  timer.style.left = "50%";
+  timer.style.transform = "translate(220px, -50%)";
+
+  let elems_span = cont.querySelectorAll('.timer span');
+  for (let elem of elems_span) {    
+    elem.style.display = "inline-block"; 
+    elem.style.fontWeight = "bold";
+    elem.style.fontSize = "46px";
+    elem.style.fontFamily = "'Sputnik'!important";
+    elem.style['text-align'] = "center";
+    elem.style.color= "white"; 
+  }
+
+  let elems_sep = cont.querySelectorAll('.seperator');
+  for (let elem of elems_sep) {    
+    elem.style.width = "10px";
+
+    elem.style.fontWeight = "bold";
+    elem.style.fontSize = "36px";
+    elem.style['vertical-align'] = "top";
+  }
+  let elems_div = cont.querySelectorAll('.timer div');
+  for (let elem of elems_div) {    
+    elem.style.fontWeight = "bold";
+    elem.style.fontSize = "36px";
+    elem.style['text-align'] = "center";
+  }
+<!-- дату меняем в этой фунции: месяцы считаются от нуля  -->
+<!--    для локального часового пояса пишем     var target_date = new Date(2020,04,09,00), 9 мая 2020 0:00 по локальному местному времени -->
+<!--    для мирового времени     var target_date = new Date(Date.UTC(2020,04,09,00)),    9 мая 2020 0:00 по гринвичу -->
+<!-- -->
+  function countdown () {
+    var target_date = new Date(2020,4,09,00),
+        current_date = currentDate();     
+    var date = new Date();
+    var difference = target_date - current_date;
+
+    if (difference < 0) {
+      clearInterval(interval);
+      if (callback && typeof callback === 'function') callback();
+        return;
+    }
+
+    var _second = 1000,
+        _minute = _second * 60,
+        _hour = _minute * 60,
+        _day = _hour * 24;
+
+    var days = Math.floor(difference / _day) + 1;
+  <!--      days = (String(days).length >= 2) ? days : '0' + days; -->   
+
+    var 
+      ref_days = (days%10 == 1 && days != 11) ? 'день' : (days%10 > 1 && days%10 < 5 && !(days>10 && days<15)) ? 'дня':'дней';
+
+    $(cont).find('.days').text(days);
+    $(cont).find('.days_ref').text(ref_days);
+  };
+
+  var interval = setInterval(countdown, 1000);
+})();
+
+function getParent(node){
+    if(node.parentNode.classList.contains("sp-banner-1000"))
+        return node.parentNode;
+    else
+        return getParent(node.parentNode);
+}
+
+var currentDate = function () {
+  var date = new Date();
+  var utc = date.getTime() + (date.getTimezoneOffset());
+  var new_date = new Date(utc )
+  return new_date;
+ };
+
+
+</script>
+<br>
