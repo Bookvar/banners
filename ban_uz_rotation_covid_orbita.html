@@ -1,0 +1,179 @@
+<!-- КОВИД -->
+<div id="COVID" style="display: none">
+<br>
+<a href="https://uz.sputniknews.ru/trend/Koronavirus_Uzbekistan/">
+<div id="parent-id-1000" width="1000px" height="90px" > 
+  <div class="sp-banner-1000" style="position:relative">
+    <img src="https://vid1.ria.ru/ig/infografika/Sputnik/uz/covid/covid_rus_blank.png">
+  </div>
+  <ul class="dt">
+     <li>
+       <span class="dtime">дата время </span>
+     </li>
+  </ul>
+  <ul class="virus">
+     <li>
+       <span class="sick">0</span><span class="dead">0</span><span class="recovered">0</span>
+     </li>
+  </ul>
+</div>
+</a>
+<br>
+</div>
+
+<script>
+(function(){
+  var cont = document.getElementById("parent-id-1000");
+  if (!cont) return;
+  cont.style.position = "relative";
+  var virus = cont.querySelector(".virus");
+  virus.parentNode.style.position = "relative";
+  virus.style.position = "absolute";
+  virus.style['list-style'] = "none";
+  virus.style.margin = "0 0 0 0";
+  virus.style.padding = "0";
+  virus.style.display = "block";
+<!--  
+-->
+  virus.style.top = "70%";
+<!--    virus.style.left = "48%";-->
+ <!--  virus.style.transform = "translate(460px, -50%)";-->
+  var e_dtime = cont.querySelector(".dtime");
+  e_dtime.style.position = "absolute";
+  e_dtime.style['list-style'] = "none";
+  e_dtime.style.margin = "0 0 0 0";
+  e_dtime.style.padding = "0";
+  e_dtime.style.display = "block";
+  e_dtime.style.fontWeight = "bold";
+  e_dtime.style.fontSize = "13px";
+  e_dtime.style.fontFamily = "'Sputnik'!important";
+  e_dtime.style['text-align'] = "right";
+  e_dtime.style.color= "white"; 
+  e_dtime.style.top = "30%"
+  e_dtime.style.transform = "translate(880px, -50%)";
+
+  var e_sick = cont.querySelector(".sick");
+  e_sick.style.position = "absolute";
+  e_sick.style['list-style'] = "none";
+  e_sick.style.margin = "0 0 0 0";
+  e_sick.style.padding = "0";
+  e_sick.style.display = "block";
+  e_sick.style.top = "70%"
+  e_sick.style.transform = "translate(465px, -50%)";
+
+  var e_dead = cont.querySelector(".dead");
+  e_dead.style.position = "absolute";
+  e_dead.style['list-style'] = "none";
+  e_dead.style.margin = "0 0 0 0";
+  e_dead.style.padding = "0";
+  e_dead.style.display = "block";
+  e_dead.style.top = "70%"
+  e_dead.style.transform = "translate(685px, -50%)";
+
+  var e_recovered = cont.querySelector(".recovered");
+  e_recovered.style.position = "absolute";
+  e_recovered.style['list-style'] = "none";
+  e_recovered.style.margin = "0 0 0 0";
+  e_recovered.style.padding = "0";
+  e_recovered.style.display = "block";
+  e_recovered.style.top = "70%"
+  e_recovered.style.transform = "translate(820px, -50%)";
+
+  let elems_span = cont.querySelectorAll('.virus span');
+  for (let elem of elems_span) {    
+    elem.style.display = "inline-block"; 
+    elem.style.fontWeight = "bold";
+    elem.style.fontSize = "46px";
+    elem.style.fontFamily = "'Sputnik'!important";
+    elem.style['text-align'] = "left";
+    elem.style.color= "white"; 
+  }
+
+
+  var app = "https://script.google.com/macros/s/AKfycbxRgPhES6-iiItGZiyZQ-c1UXlzi10lxhVRwQBKGkrfXtTjabE/exec",
+    
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', app);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== 4) return;
+      if (xhr.status == 200) {
+        try {
+            var r = JSON.parse(xhr.responseText),
+               result = r["result"];
+               $(cont).find('.dtime').text(r["result"][0][0]);
+               $(cont).find('.sick').text(r["result"][0][1]);
+               $(cont).find('.dead').text(r["result"][0][2]);
+               $(cont).find('.recovered').text(r["result"][0][3]);
+              
+        } catch(e) {}
+     } 
+  }
+  xhr.send();
+})();
+
+function getParent(node){
+    if(node.parentNode.classList.contains("sp-banner-1000"))
+        return node.parentNode;
+    else
+        return getParent(node.parentNode);
+}
+</script>
+
+
+<!-- Орбита -->
+<div id="ORBITA" style="display: none">
+<!--  код для баннера 1000_130.mp4  -->
+<br>
+<a id='aaa' href="http://orbita-sputnik.ru/">
+<video id="video" autoplay muted playsinline preload="metadata" width="1000" height="130" >
+    <source src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/orbita/im_ban_v3+lng+all_1.mp4" type="video/mp4" id="video_source" /> 
+</video>
+</a>
+<br>
+</div>
+<br>
+
+
+
+
+<script>
+function fallback(video)
+{
+  var img = video.querySelector('img');
+  if (img)
+    video.parentNode.replaceChild(img, video);
+}
+</script>
+
+<script>
+video = document.getElementById("video")
+video.addEventListener("loadedmetadata",init)
+
+function init() {
+    video.removeEventListener("loadedmetadata",init)
+    video.play()
+    video.addEventListener('timeupdate', 
+        funcloop=function(){
+            if (video.currentTime >= (video.duration - 0.1)) {
+                video.currentTime = 0.1;
+                video.play()
+            }
+        }, false);
+    }
+</script>
+
+<!-- Случайный выбор одного из двух вариантов -->
+<script>
+var date = new Date();
+var r = date.getMilliseconds()%2;
+var cont1 = document.getElementById("COVID");
+var cont2 = document.getElementById("ORBITA");
+    if (r == 0) {
+            cont1.style.display = "none";
+            cont2.style.display = "block";    
+    } 
+    else {
+            cont1.style.display = "block";
+            cont2.style.display = "none";    
+    };
+</script>
