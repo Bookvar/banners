@@ -1,0 +1,37 @@
+<br>
+<a id='aaa' href="https://sputnik.md/Holocaust/">
+<img id='image_source' src="https://vid1.ria.ru/ig/infografika/Sputnik/md/radio/holocost.png">
+</img>
+</a>
+<br>
+
+<script>
+var 
+src1 = "https://vid1.ria.ru/ig/infografika/Sputnik/md/radio/holocost.png";
+src2 = "https://vid1.ria.ru/ig/infografika/Sputnik/md/radio/radio_md.png";
+src0 = src1;
+href1 = "https://sputnik.md/Holocaust/";
+href2 = "https://sputnik.md/news/20160121/4267281/sputnik-moldova-radio-emisiunile.html";
+href0 = href1;
+
+var date = new Date();
+var r = date.getMilliseconds()%2;
+
+elem_image = document.getElementById("image_source")
+
+if (r == 0) {
+    href0 = href2;
+} 
+else {
+    href0 = href1;
+};
+if (r == 0) {
+    src0 = src2;
+} 
+else {
+    src0 = src1;
+};
+document.getElementById('aaa').href = href0;
+document.getElementById('image_source').setAttribute("src", src0);
+
+</script>

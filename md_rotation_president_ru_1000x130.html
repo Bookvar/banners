@@ -1,0 +1,182 @@
+<!-- Выборы президента  -->
+<div id="PRESIDENT" style="display: none" >
+    <br>
+    <a href="https://ru.sputnik.md/elections-2020/">
+    <img  src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/MD/1_Alegeri_Prezident_1000x153_RU.gif">
+    </a>
+    <br>
+    </div>
+    
+    
+    <!-- 1 Ноября (с 7.00 утра) начнутся выборы Президента-->
+    <!-- Начало баннера с таймером -->
+    <div id="ELECTION" style="display: none">
+    <br>
+    <a href="https://ru.sputnik.md/trend/election_secondround/">
+    <div id="parent-id-1000" width="1000px" height="130px" > 
+      <div class="sp-banner-1000" style="position:relative">
+        <img src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/timer/md/1000X130_MD_vibori2020.png">
+      </div>
+      <ul class="timer">
+         <li>
+           <span class="days">00</span>
+           <div class="days_ref">дней</div>
+         </li>
+         <li class="seperator">:</li>
+         <li>
+           <span class="hours">00</span>
+           <div class="hours_ref">часов</div>
+         </li>
+         <li class="seperator">:</li>
+         <li>
+           <span class="minutes">00</span>
+           <div class="minutes_ref">минут</div>
+         </li>
+         <li class="seperator">:</li>
+         <li>
+           <span class="seconds">00</span>
+           <div  class="seconds_ref">секунд</div>
+         </li>
+      </ul>
+    </div>
+    </a>
+    <br>
+    </div>
+    
+    <!-- Здесь ставим необходимую дату  -->
+    <script>
+    (function(){
+      var cont = document.getElementById("parent-id-1000");
+      if (!cont) return;
+      cont.style.position = "relative";
+      var timer = cont.querySelector(".timer");
+      timer.parentNode.style.position = "relative";
+      timer.style.position = "absolute";
+      timer.style['list-style'] = "none";
+      timer.style.margin = "0 0 0 0";
+      timer.style.padding = "0";
+      timer.style.display = "block";
+    
+    
+      timer.style.top = "50%";
+      timer.style.left = "50%";
+      timer.style.transform = "translate(180px, -50%)";
+      
+      let elems_li = cont.querySelectorAll('.timer li');
+      for (let elem of elems_li) {    
+        elem.style.display = "inline-block";
+        elem.style.color = "black";
+    
+      }
+    
+    <!-- стиль цифр -->
+      let elems_span = cont.querySelectorAll('.timer span');
+      for (let elem of elems_span) {    
+        elem.style.width = "45px";
+        elem.style.display = "inline-block";
+        elem.style.fontWeight = "bold";
+        elem.style.fontSize = "32px";
+        elem.style.fontFamily = "'Sputnik'!important";
+        elem.style['text-align'] = "center";
+        elem.style['text-align'] = "center"; 
+      }
+    <!-- стиль разделителей -->
+      let elems_sep = cont.querySelectorAll('.seperator');
+      for (let elem of elems_sep) {    
+        elem.style.width = "10px";
+        elem.style.display = "inline-block";
+        elem.style.fontWeight = "bold";
+        elem.style.fontSize = "28px";
+        elem.style['vertical-align'] = "top";
+      }
+    <!-- стиль дни-часы-минуты-секунды -->
+      let elems_div = cont.querySelectorAll('.timer div');
+      for (let elem of elems_div) {    
+        elem.style.fontWeight = "bold";
+        elem.style.fontSize = "10px";
+        elem.style['text-align'] = "center";
+        elem.style.color = "white";
+      }
+    <!-- дату меняем в этой фунции: месяцы считаются от нуля  -->
+    <!--    для локального часового пояса пишем     var target_date = new Date(2020,04,09,00), 9 мая 2020 0:00 по локальному местному времени -->
+    <!--    для мирового времени     var target_date = new Date(Date.UTC(2020,04,09,00)),    9 мая 2020 0:00 по гринвичу -->
+    <!-- -->
+      function countdown () {
+        var target_date = new Date(Date.UTC(2020,10,01,5,0,0)),
+            current_date = currentDate();     
+        var date = new Date();
+        var difference = target_date - current_date;
+        if (difference < 0) {
+          clearInterval(interval);
+          if (callback && typeof callback === 'function') callback();
+            return;
+        }
+    
+        var _second = 1000,
+            _minute = _second * 60,
+            _hour = _minute * 60,
+            _day = _hour * 24;
+    
+        var days = Math.floor(difference / _day),
+            hours = Math.floor((difference % _day) / _hour),
+            minutes = Math.floor((difference % _hour) / _minute),
+            seconds = Math.floor((difference % _minute) / _second);
+    
+            days = (String(days).length >= 2) ? days : '0' + days;
+            hours = (String(hours).length >= 2) ? hours : '0' + hours;
+            minutes = (String(minutes).length >= 2) ? minutes : '0' + minutes;
+            seconds = (String(seconds).length >= 2) ? seconds : '0' + seconds;
+    
+        var 
+          ref_days = (days%10 == 1 && days != 11) ? 'день' : (days%10 > 1 && days%10 < 5 && !(days>10 && days<15)) ? 'дня':'дней';
+          ref_hours = (hours%10 == 1 && hours != 11) ? 'час' : (hours%10 > 1 && hours%10 < 5 && !(hours>10 && hours<15)) ? 'часа':'часов';
+          ref_minutes = (minutes%10 == 1 && minutes != 11) ? 'минута' : (minutes%10 > 1 && minutes%10 < 5 && !(minutes>10 && minutes<15)) ? 'минуты':'минут';
+          ref_seconds = (seconds%10 == 1 && seconds != 11) ? 'секунда' : (seconds%10 > 1 && seconds%10 < 5 && !(seconds>10 && seconds<15)) ? 'секунды':'секунд';
+    
+        $(cont).find('.days').text(days);
+        $(cont).find('.hours').text(hours);
+        $(cont).find('.minutes').text(minutes);
+        $(cont).find('.seconds').text(seconds);
+    
+        $(cont).find('.days_ref').text(ref_days);
+        $(cont).find('.hours_ref').text(ref_hours);
+        $(cont).find('.minutes_ref').text(ref_minutes);
+        $(cont).find('.seconds_ref').text(ref_seconds);
+      };
+    
+      var interval = setInterval(countdown, 1000);
+    })();
+    
+    function getParent(node){
+        if(node.parentNode.classList.contains("sp-banner-1000"))
+            return node.parentNode;
+        else
+            return getParent(node.parentNode);
+    }
+    
+    var currentDate = function () {
+      var date = new Date();
+      var utc = date.getTime() + (date.getTimezoneOffset());
+      var new_date = new Date(utc )
+      return new_date;
+     };
+    </script>
+    <br>
+    
+     <!-- Конец -->
+    
+    <!-- Случайный выбор одного из двух вариантов -->
+    <script>
+    var date = new Date();
+    var r = date.getMilliseconds()%2;
+    var cont1 = document.getElementById("PRESIDENT");
+    var cont2 = document.getElementById("ELECTION");
+        if (r == 0) {
+                cont1.style.display = "none";
+                cont2.style.display = "block";    
+        } 
+        else {
+                cont1.style.display = "block";
+                cont2.style.display = "none";    
+        };
+    </script>

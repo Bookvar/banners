@@ -1,0 +1,46 @@
+
+<!-- Первый баннер ============================================================== -->
+<div id="POLKANIC" style="display: none" >
+    <br>
+    <a href="https://vk.com/polkanic">
+    <img  src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/polcanic.gif">
+    </a>
+    <br>
+</div>
+<!-- скрипты первого баннера, если есть такие -->
+<script>
+    console.log('POLKANIC');
+</script>
+<!-- ============================================================================ -->
+
+<!-- Второй баннер ============================================================== -->
+<div id="MARMIT" style="display: none" >
+    <br>
+    <a href="https://vk.com/marmit">
+    <img  src="https://vid1.ria.ru/ig/infografika/Sputnik/ban/marmit.gif">
+    </a>
+    <br>
+</div>
+<!-- скрипты второго баннера, если есть такие -->
+<script>
+    console.log('MARMIT');
+</script>
+<!-- ============================================================================ -->
+
+<!-- ============================================================================ -->
+<!-- Скрипт случайного выбора одного из двух вариантов -->
+<script>
+    var date = new Date();
+    var r = date.getMilliseconds()%2;
+    var cont1 = document.getElementById("PRESIDENT");
+    var cont2 = document.getElementById("ELECTION");
+    if (r == 0) {
+            cont1.style.display = "none";
+            cont2.style.display = "block";    
+    } 
+    else {
+            cont1.style.display = "block";
+            cont2.style.display = "none";    
+    };
+</script>
+<!-- ============================================================================ -->
